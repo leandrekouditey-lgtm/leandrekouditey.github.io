@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Léandre Kouditey – Portfolio BTS SIO</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #7fff6e;
+    --accent2: #b8ff4f;
+    --text: #e8e8e8;
+    --muted: #888;
+    --white: #ffffff;
+    --tag-bg: rgba(127,255,110,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 60px;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem clamp(1.5rem, 8vw, 7rem) 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(127,255,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 2rem; height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 0.15em;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    max-width: 520px;
+    margin: 1.5rem 0 2.5rem;
+    font-weight: 400;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    padding: 0.7rem 1.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.7rem 1.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-badges {
+    display: flex; gap: 0.6rem; flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+  .badge {
+    background: var(--tag-bg);
+    border: 1px solid rgba(127,255,110,0.2);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem clamp(1.5rem, 8vw, 7rem); }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 1.5rem; height: 1px;
+    background: var(--accent);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+  .section-intro {
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* PROJETS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex; flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: rgba(127,255,110,0.3); transform: translateY(-3px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+  .project-card.featured .project-body { flex: 1; }
+  .project-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .project-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: auto;
+  }
+  .tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+  .project-features {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .project-features li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .project-features li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  /* STAGE */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stage-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+  .stage-card-title {
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .stage-card-title .ico { color: var(--accent); font-size: 1rem; }
+  .stage-card p, .stage-card li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .stage-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .stage-card ul li::before { content: '· '; color: var(--accent); }
+  .stage-full { grid-column: 1 / -1; }
+
+  /* COMPETENCES */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .skill-list li {
+    font-size: 0.9rem;
+    color: var(--text);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-list li::before { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+  /* LANGUES */
+  .lang-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .lang-name { width: 80px; font-size: 0.9rem; }
+  .lang-dots { display: flex; gap: 4px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .dot.on { background: var(--accent); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; padding: 0 0 2rem 1.5rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -4.5px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .tl-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+  }
+  .tl-title { font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+  .tl-desc { font-size: 0.88rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .contact-item .ico { color: var(--accent); width: 1.2rem; text-align: center; }
+  .contact-item a { color: var(--muted); text-decoration: none; }
+  .contact-item a:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem clamp(1.5rem, 8vw, 7rem);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+  .footer-mono { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .project-card.featured { flex-direction: column; }
+    .stage-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.6s ease forwards; }
+  .hero .hero-eyebrow { animation-delay: 0.1s; opacity: 0; }
+  .hero h1 { animation-delay: 0.2s; opacity: 0; }
+  .hero .hero-sub { animation-delay: 0.3s; opacity: 0; }
+  .hero .hero-cta { animation-delay: 0.4s; opacity: 0; }
+  .hero .hero-badges { animation-delay: 0.5s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">LK.DEV</span>
+  <ul class="nav-links">
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#stage">Stage</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">BTS SIO · Option SLAM · 1ère année</p>
+  <h1>Léandre<br><span class="accent">Kouditey</span></h1>
+  <p class="hero-sub">Développeur web en formation au Lycée Henri Bergson, Angers. Je conçois des applications PHP/MySQL et explore le développement logiciel.</p>
+  <div class="hero-cta">
+    <a href="#projets" class="btn-primary">Voir mes projets</a>
+    <a href="#contact" class="btn-outline">Me contacter</a>
+  </div>
+  <div class="hero-badges">
+    <span class="badge">PHP</span>
+    <span class="badge">MySQL</span>
+    <span class="badge">C#</span>
+    <span class="badge">.NET</span>
+    <span class="badge">HTML/CSS</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">Git</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJETS -->
+<section id="projets">
+  <p class="section-label">Projets</p>
+  <h2>Ce que j'ai réalisé</h2>
+  <p class="section-intro">Applications développées dans le cadre du BTS SIO et par intérêt personnel, couvrant le développement web et desktop.</p>
+
+  <div class="projects-grid">
+
+    <!-- FEATURED : GestEmprunt -->
+    <div class="project-card featured">
+      <div style="display:flex;flex-direction:column;gap:0.5rem;min-width:160px;">
+        <p class="project-number">01 · Projet principal</p>
+        <div style="background:rgba(127,255,110,0.07);border:1px solid rgba(127,255,110,0.2);border-radius:6px;padding:1.25rem 1rem;margin-top:0.5rem;">
+          <div style="font-family:'Space Mono',monospace;font-size:2rem;color:var(--accent);font-weight:700;line-height:1;">GE</div>
+          <div style="font-size:0.72rem;color:var(--muted);margin-top:0.4rem;font-family:'Space Mono',monospace;">GestEmprunt</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <p class="project-title">GestEmprunt – Gestion de prêts de matériel</p>
+        <p style="font-size:0.75rem;color:var(--accent);font-family:'Space Mono',monospace;margin-bottom:0.4rem;">↳ Réalisé dans le cadre du stage — Lycée Henri Bergson</p>
+        <p class="project-desc">Application web complète de gestion d'emprunts de matériel pour un établissement scolaire. Développée en PHP/MySQL avec architecture rôle-based (admin, professeur, observateur), notifications SMTP, calendrier interactif et système de réservations avec validation admin.</p>
+        <ul class="project-features">
+          <li>Inscription professeur avec validation administrateur</li>
+          <li>Rôle observateur pour comptes en attente</li>
+          <li>Calendrier couleur des emprunts et réservations (<code style="font-size:0.8rem;color:var(--accent)">calendrier.php</code>)</li>
+          <li>Seuils d'alerte de stock avec surlignage rouge et tri tableau de bord</li>
+          <li>Notifications par e-mail via PHPMailer (SMTP)</li>
+          <li>Conversion automatique réservation → emprunt validé</li>
+          <li>Bouton « marquer comme rendu » pour l'admin</li>
+          <li>Bilan récapitulatif des emprunts</li>
+        </ul>
+        <div class="project-tags" style="margin-top:1rem;">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL / PDO</span>
+          <span class="tag">PHPMailer</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">SMTP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- missionStage -->
+    <div class="project-card">
+      <p class="project-number">02 · Projet scolaire</p>
+      <p class="project-title">MissionStage – Gestion internat & sorties</p>
+      <p style="font-size:0.75rem;color:var(--accent);font-family:'Space Mono',monospace;margin-bottom:0.4rem;">↳ Réalisé dans le cadre du stage — Lycée Henri Bergson</p>
+      <p class="project-desc">Application PHP de gestion des autorisations de sortie pour élèves internes. Insertion par plage de dates, profils élèves, sauvegarde BDD et authentification avec rôles (loge, CPE, administrateur).</p>
+      <ul class="project-features" style="margin-top:0.5rem;">
+        <li>Saisie / modification / annulation d'autorisations</li>
+        <li>Historique par élève, import CSV</li>
+        <li>Hachage bcrypt des mots de passe</li>
+        <li>Interface refaite : topbar + sidebar + fil d'Ariane</li>
+      </ul>
+      <div class="project-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">MySQLi</span>
+        <span class="tag">Latin-1</span>
+        <span class="tag">Sessions</span>
+        <span class="tag">bcrypt</span>
+      </div>
+    </div>
+
+    <!-- VELIB C# -->
+    <div class="project-card">
+      <p class="project-number">03 · Projet desktop</p>
+      <p class="project-title">Application VELIB – Gestion de vélos partagés</p>
+      <p class="project-desc">Application Windows Forms en C# connectée à une base MySQL, avec statistiques multi-formulaires et gestion de flotte de vélos partagés. Projet de programmation desktop dans le cadre du cursus BTS SIO.</p>
+      <div class="project-tags" style="margin-top:auto;">
+        <span class="tag">C#</span>
+        <span class="tag">Windows Forms</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">.NET</span>
+        <span class="tag">TP5/TP6</span>
+      </div>
+    </div>
+
+    <!-- NetLock RMM -->
+    <div class="project-card">
+      <p class="project-number">04 · Exploration technique</p>
+      <p class="project-title">NetLock RMM – Déploiement open source</p>
+      <p class="project-desc">Compilation et déploiement d'une solution RMM open source (.NET/Blazor + MySQL) dans un environnement lycée pour gestion de ~1000 postes. Résolution d'erreurs d'auth MySQL, génération de stubs, rédaction d'un guide de déploiement en français.</p>
+      <div class="project-tags" style="margin-top:auto;">
+        <span class="tag">.NET / Blazor</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">RMM</span>
+        <span class="tag">Windows</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STAGE -->
+<section id="stage">
+  <p class="section-label">Stage</p>
+  <h2>Rapport de stage</h2>
+  <p class="section-intro">Stage effectué au service informatique du Lycée Henri Bergson, Angers — BTS SIO 1ère année, option SLAM.</p>
+
+  <div class="stage-grid">
+    <div class="stage-card">
+      <p class="stage-card-title"><span class="ico">🏫</span> Établissement d'accueil</p>
+      <p><strong style="color:var(--white)">Lycée Henri Bergson</strong><br>85 Rue de la Barre, 49100 Angers<br>Service informatique<br>Tuteur : M. Jonathan Chaigneau</p>
+    </div>
+    <div class="stage-card">
+      <p class="stage-card-title"><span class="ico">🎯</span> Mission principale</p>
+      <p>Modernisation du site web interne de gestion de l'internat — application PHP/MySQL vieille d'une dizaine d'années présentant de nombreuses lacunes techniques et sécuritaires.</p>
+    </div>
+
+    <div class="stage-card stage-full">
+      <p class="stage-card-title"><span class="ico">⚙️</span> Travaux réalisés</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-top:0.5rem;">
+        <div>
+          <p style="font-size:0.8rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Migration serveur</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+            <li style="font-size:0.83rem;color:var(--muted);">· Debian 5 → Debian 13 (Bookworm)</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· Apache 2 + MySQL 8 + PHP récent</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· VMware Workstation</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:0.8rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Refonte interface</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+            <li style="font-size:0.83rem;color:var(--muted);">· Topbar + sidebar + breadcrumb</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· Mode sombre (localStorage)</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· CSS custom properties</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:0.8rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Sécurité</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+            <li style="font-size:0.83rem;color:var(--muted);">· Hachage bcrypt (password_hash)</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· mysql_* → mysqli_*</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· Nettoyage entrées utilisateurs</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:0.8rem;font-weight:600;color:var(--white);margin-bottom:0.4rem;">Outils utilisés</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+            <li style="font-size:0.83rem;color:var(--muted);">· VS Code, WAMP, phpMyAdmin</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· Git / GitHub</li>
+            <li style="font-size:0.83rem;color:var(--muted);">· VMware Workstation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-card">
+      <p class="stage-card-title"><span class="ico">⚠️</span> Difficultés rencontrées</p>
+      <ul>
+        <li>Code legacy PHP 5 fortement couplé</li>
+        <li>Fonctions dépréciées dans toute la base</li>
+        <li>Coordination avec les utilisateurs métier</li>
+        <li>Migration sans interruption de service</li>
+      </ul>
+    </div>
+    <div class="stage-card">
+      <p class="stage-card-title"><span class="ico">✅</span> Compétences acquises</p>
+      <ul>
+        <li>Migration serveur Linux en conditions réelles</li>
+        <li>Refonte d'une application existante sans casser la logique métier</li>
+        <li>Pratiques de sécurité PHP (hachage, sanitisation)</li>
+        <li>Gestion d'un projet en autonomie</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPETENCES -->
+<section id="competences">
+  <p class="section-label">Compétences</p>
+  <h2>Stack technique</h2>
+  <p class="section-intro">Compétences acquises en formation et en pratique sur les projets personnels et scolaires.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Back-end</p>
+      <ul class="skill-list">
+        <li>PHP (PDO, MySQLi)</li>
+        <li>MySQL / MariaDB</li>
+        <li>C# / .NET</li>
+        <li>Gestion de sessions</li>
+        <li>SMTP / PHPMailer</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Front-end</p>
+      <ul class="skill-list">
+        <li>HTML5 / CSS3</li>
+        <li>JavaScript (DOM, fetch)</li>
+        <li>CSS custom properties</li>
+        <li>Responsive design</li>
+        <li>Mode sombre</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Outils & méthodes</p>
+      <ul class="skill-list">
+        <li>Git / GitHub</li>
+        <li>Visual Studio Code</li>
+        <li>WAMP / phpMyAdmin</li>
+        <li>VMware Workstation</li>
+        <li>Windows Forms</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Sécurité & BDD</p>
+      <ul class="skill-list">
+        <li>Hachage bcrypt</li>
+        <li>Sanitisation SQL</li>
+        <li>RBAC (rôles utilisateurs)</li>
+        <li>Migration MySQL</li>
+        <li>Modélisation BDD</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Langues</p>
+      <div style="margin-top:0.5rem;">
+        <div class="lang-row">
+          <span class="lang-name">Français</span>
+          <div class="lang-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+          </div>
+          <span style="font-size:0.75rem;color:var(--muted);">Natif</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Anglais</span>
+          <div class="lang-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+          </div>
+          <span style="font-size:0.75rem;color:var(--muted);">Avancé</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Chinois</span>
+          <div class="lang-dots">
+            <div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+          <span style="font-size:0.75rem;color:var(--muted);">Notions</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Soft skills</p>
+      <ul class="skill-list">
+        <li>Travail en équipe</li>
+        <li>Communication</li>
+        <li>Curiosité technique</li>
+        <li>Autonomie</li>
+        <li>Négociation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <p class="section-label">Parcours</p>
+  <h2>Formation & expériences</h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;flex-wrap:wrap;">
+    <div>
+      <p style="font-size:0.8rem;font-weight:600;color:var(--white);letter-spacing:0.05em;margin-bottom:1.5rem;">FORMATION</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <p class="tl-date">2025 – EN COURS</p>
+          <p class="tl-title">BTS SIO 1ère année — Option SLAM</p>
+          <p class="tl-desc">Lycée Henri Bergson, Angers</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2023 – 2025</p>
+          <p class="tl-title">1ère et Terminale STMG — Spécialité Mercatique</p>
+          <p class="tl-desc">Lycée Henri Bergson, Angers</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2022 – 2023</p>
+          <p class="tl-title">Seconde Générale</p>
+          <p class="tl-desc">Lycée Henri Bergson, Angers</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2021 – 2022</p>
+          <p class="tl-title">Brevet des collèges — Mention Assez-Bien</p>
+          <p class="tl-desc">Collège Jean Monnet, Angers</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2018 – 2022</p>
+          <p class="tl-title">Classe bilingue Anglais-Chinois (6ème → 3ème)</p>
+          <p class="tl-desc">Collège Jean Monnet, Angers</p>
+        </div>
+        <div class="tl-item" style="padding-bottom:0;">
+          <p class="tl-date">CERTIFICATIONS</p>
+          <p class="tl-title">PSC1, PSC2, certifications PIX</p>
+          <p class="tl-desc">Secourisme et numérique</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size:0.8rem;font-weight:600;color:var(--white);letter-spacing:0.05em;margin-bottom:1.5rem;">EXPÉRIENCES</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <p class="tl-date">JANVIER 2025</p>
+          <p class="tl-title">Organisation d'un tournoi de jeux vidéo</p>
+          <p class="tl-desc">Événement « Les Jeux d'Henri » au Lycée Henri Bergson, Angers</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">OCTOBRE 2024</p>
+          <p class="tl-title">Voyage en Chine — Échange scolaire</p>
+          <p class="tl-desc">Lycée n°3 de Jinan</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">JAN. – MAI 2024</p>
+          <p class="tl-title">Actions de vente pour le projet « Chine »</p>
+          <p class="tl-desc">Financement du voyage d'échange</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">NOVEMBRE 2023</p>
+          <p class="tl-title">Bénévolat SNU aux commémorations</p>
+          <p class="tl-desc">Service National Universel</p>
+        </div>
+        <div class="tl-item" style="padding-bottom:0;">
+          <p class="tl-date">JUIN 2023</p>
+          <p class="tl-title">Service National Universel (SNU)</p>
+          <p class="tl-desc">Séjour de cohésion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2>Me joindre</h2>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="ico">✉️</span>
+        <a href="mailto:leandrekouditey@gmail.com">leandrekouditey@gmail.com</a>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;">
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Je suis actuellement en <strong style="color:var(--white)">BTS SIO 1ère année option SLAM</strong> et je recherche des opportunités pour développer mes compétences. N'hésitez pas à me contacter pour tout projet ou stage.</p>
+      <a href="mailto:leandrekouditey@gmail.com" class="btn-primary" style="display:inline-block;margin-top:1.5rem;">Envoyer un message</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Léandre Kouditey — Portfolio BTS SIO SLAM</p>
+  <span class="footer-mono">Fait avec &lt;/&gt;</span>
+</footer>
+
+</body>
+</html>
